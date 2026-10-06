@@ -1,0 +1,31 @@
+{% extends "baking/base.html" %}
+
+{% block content %}
+<section class="bg-navy-950 blueprint-grid py-20 text-white">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <p class="font-mono text-xs text-gold-400 uppercase mb-3">Our Menu</p>
+        <h1 class="font-display text-4xl font-extrabold">Baked by Success Catalog</h1>
+    </div>
+</section>
+
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+        {% for item in items %}
+            <div class="bg-white rounded-lg border border-navy-950/10 shadow-sm overflow-hidden gold-corner flex flex-col justify-between">
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-navy-950 mb-2">{{ item.name }}</h3>
+                    <p class="text-sm text-gray-600 mb-4">{{ item.description }}</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 border-t flex justify-between items-center text-sm font-semibold">
+                    <span class="text-gold-500">{% if item.price > 0 %}R{{ item.price }}{% else %}Custom Quote{% endif %}</span>
+                    <a href="{% url 'baking:custom_order' %}" class="text-navy-950 hover:underline">Order &rarr;</a>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-span-full text-center py-12 text-gray-500">
+                Catalog items coming soon. Click <a href="{% url 'baking:custom_order' %}" class="text-gold-500 underline">here</a> to place a custom order!
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

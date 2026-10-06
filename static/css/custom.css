@@ -1,0 +1,44 @@
+/* ==========================================
+   BAKED BY SUCCESS — BAKERY THEME STYLES
+   ========================================== */
+
+/* Warm Warm Espresso / Vanilla Blueprint Grid */
+.blueprint-grid {
+    background-color: #2C1A1D; /* Rich Espresso Base */
+    background-image: 
+        linear-gradient(rgba(230, 169, 53, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230, 169, 53, 0.07) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+/* Custom Gold/Buttercream Corner Accent */
+.gold-corner {
+    position: relative;
+}
+
+.gold-corner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #E6A935;
+    border-left: 2px solid #E6A935;
+    border-top-left-radius: 4px;
+}
+
+/* Core Color Palette Classes */
+.bg-navy-950 { background-color: #2C1A1D !important; } /* Deep Warm Espresso */
+.bg-navy-900 { background-color: #3D262A !important; } /* Soft Cocoa */
+.bg-gray-50  { background-color: #FAF6F0 !important; } /* Soft Vanilla Cream Background */
+
+.text-gold-400 { color: #F5C768 !important; } /* Bright Buttercream */
+.text-gold-500 { color: #E6A935 !important; } /* Warm Honey Gold */
+.bg-gold-400   { background-color: #E6A935 !important; color: #2C1A1D !important; }
+.bg-gold-500   { background-color: #D49526 !important; color: #FFFFFF !important; }
+.border-gold-400 { border-color: #E6A935 !important; }
+
+/* Subtle Bakery Accent Utilities */
+.text-strawberry { color: #D96B75; }
+.bg-strawberry   { background-color: #D96B75; color: #FFFFFF; }
