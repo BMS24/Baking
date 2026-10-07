@@ -1,24 +1,43 @@
 {% extends "baking/base.html" %}
 
 {% block content %}
-<section class="bg-navy-950 blueprint-grid py-20 text-white">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-        <p class="font-mono text-xs text-gold-400 uppercase mb-3">Our Menu</p>
+<section class="bg-navy-950 blueprint-grid py-16 text-white text-center">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="font-mono text-xs text-gold-400 uppercase tracking-widest mb-2">Our Menu</p>
         <h1 class="font-display text-4xl font-extrabold">Baked by Success Catalog</h1>
     </div>
 </section>
 
 <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for item in items %}
-            <div class="bg-white rounded-lg border border-navy-950/10 shadow-sm overflow-hidden gold-corner flex flex-col justify-between">
-                <div class="p-6">
-                    <h3 class="font-bold text-xl text-navy-950 mb-2">{{ item.name }}</h3>
-                    <p class="text-sm text-gray-600 mb-4">{{ item.description }}</p>
+            <div class="bg-white rounded-lg border border-navy-950/10 shadow-sm overflow-hidden gold-corner flex flex-col justify-between hover:shadow-md transition">
+                <div>
+                    <!-- ITEM IMAGE -->
+                    <div class="h-48 w-full bg-gray-100 overflow-hidden relative">
+                        {% if item.image %}
+                            <img src="{{ item.image }}" alt="{{ item.name }}" class="w-full h-full object-cover">
+                        {% else %}
+                            <div class="w-full h-full flex items-center justify-center text-gray-400 font-mono text-xs">
+                                Baked by Success
+                            </div>
+                        {% endif %}
+                        <span class="absolute top-3 right-3 bg-navy-950 text-gold-400 font-mono text-xs px-2.5 py-1 rounded-md border border-gold-400/30">
+                            {{ item.category.name }}
+                        </span>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-navy-950 mb-2">{{ item.name }}</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">{{ item.description }}</p>
+                    </div>
                 </div>
-                <div class="px-6 py-4 bg-gray-50 border-t flex justify-between items-center text-sm font-semibold">
-                    <span class="text-gold-500">{% if item.price > 0 %}R{{ item.price }}{% else %}Custom Quote{% endif %}</span>
-                    <a href="{% url 'baking:custom_order' %}" class="text-navy-950 hover:underline">Order &rarr;</a>
+
+                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center text-sm font-semibold">
+                    <span class="text-gold-500 font-bold">{% if item.price > 0 %}R{{ item.price }}{% else %}Custom Quote{% endif %}</span>
+                    <a href="{% url 'baking:custom_order' %}" class="text-navy-950 hover:text-gold-500 transition flex items-center gap-1">
+                        Order &rarr;
+                    </a>
                 </div>
             </div>
         {% empty %}

@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import BakeryItem, CustomOrderRequest
+from .models import BakeryItem, CustomOrderRequest, CarouselSlide
 from .forms import CustomOrderForm
 
-
 def home(request):
+    slides = CarouselSlide.objects.filter(is_active=True)
     featured_items = BakeryItem.objects.filter(is_available=True)[:6]
-    return render(request, 'baking/home.html', {'featured_items': featured_items})
+    return render(request, 'baking/home.html', {
+        'slides': slides,
+        'featured_items': featured_items
+    })
 
 
 def catalog(request):

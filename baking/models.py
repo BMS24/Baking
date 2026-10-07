@@ -75,3 +75,18 @@ class CustomOrderRequest(models.Model):
 
     def __str__(self):
         return f"Order #{self.id} — {self.customer_name} ({self.event_date})"
+    
+class CarouselSlide(models.Model):
+    title = models.CharField(max_length=150)
+    subtitle = models.CharField(max_length=255, blank=True, default="")
+    image_url = models.URLField(max_length=500, help_text="Direct photo or Unsplash image URL")
+    button_text = models.CharField(max_length=50, default="Order Custom Cake")
+    button_link = models.CharField(max_length=100, default="/custom-order/")
+    is_active = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.title
